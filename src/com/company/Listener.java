@@ -9,5 +9,8 @@ public class Listener {
         //message and can decrypt the encrypted message sent by the Encrypter object via the update method
         //(called on listeners).
     }
-    public String decrypt(){}
+    public String decrypt(){
+        return null;
+    }
+
 }
