@@ -12,5 +12,6 @@ public class ShiftEncryption implements Encryption {
             decArray[i]= (char) asciiArray[i];
         }
         String text = new String(decArray);
-        return text;    }
+        return text;
+    }
 }

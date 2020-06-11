@@ -31,6 +31,8 @@ public class Encrypter {
         //then get the text
         //encrypt the message using 2 algo's
         //send messages to its listeners using its listener's encr algo(passed initially by its listeners via the register method).
+
+
     }
 
     public void add(Encryption e){
