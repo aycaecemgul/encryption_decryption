@@ -1,7 +1,12 @@
 package com.company;
 
 public class General extends Listener {
-    public Decryption decAlgo;
+
+    public General() {
+        decAlgo=new ShiftDecryption();
+        encAlgo=new ShiftEncryption();
+    }
+
     public String decrypt(){
         return null;
     }

@@ -1,8 +1,11 @@
 package com.company;
 
 public class Spy extends Listener {
-    //uses BinaryEncryption algorithm
-    public Decryption decAlgo;
+
+    public Spy() {
+        decAlgo=new BinaryDecryption();
+        encAlgo=new BinaryEncryption();
+    }
 
     public String decrypt(){
         return null;

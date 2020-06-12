@@ -1,41 +1,41 @@
 package com.company;
 
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.util.ArrayList;
+import java.util.List;
+import java.util.Scanner;
 
 public class Encrypter {
-    public ArrayList<Encryption> enAlgorithms;
-    public ArrayList<Listener> listeners; //those listening for encrypted messages from the Encrypter class
+    public List<Encryption> enAlgorithms;
+    public List<Listener> listeners; //those listening for encrypted messages from the Encrypter class
+    public List keys;
+
     public Encrypter() {
         enAlgorithms=new ArrayList<Encryption>();
         listeners=new ArrayList<Listener>();
+        keys=new ArrayList();
     }
 
-    //type of key??
-    // listeners use to
-    //register themselves so that they can get encrypted messages from an
-    //Encrypter object.
-    public void register(Encryption enAlgo,String key, Listener listener){
+    public void register(Encryption enAlgo,byte key, Listener listener){
+        listeners.add(listener);
+        keys.add(key);
+        enAlgorithms.add(enAlgo);
 
     }
 
-    //send the encrpyted message to all its listeners (of course each
-    //message is encrypted with the algorithm and the key the listener sent before with
-    //registration)
-
-    // In the sendAll message you need to loop through all the listeners and call
-    //their update message to pass each one its encrypted message. Inside the update
-    //method of the listener object you need to decrypt the message and print to
-    //the console to see the plain text.
-    public void sendAll(String fileName){
+    public void sendAll(String fileName) throws FileNotFoundException {
         //open the file
+        File file = new File(fileName);
+        Scanner inputFile = new Scanner(file);
         //then get the text
-        //encrypt the message using 2 algo's
-        //send messages to its listeners using its listener's encr algo(passed initially by its listeners via the register method).
+        String text = inputFile.toString();
+        for(int i=0;i<listeners.size();i++){
+            //encrypt according to the listener
+            listeners.get(i).encAlgo.encrypt(text, (byte) keys.get(i));
 
+        }
 
     }
 
-    public void add(Encryption e){
-        enAlgorithms.add(e);
-    }
 }
